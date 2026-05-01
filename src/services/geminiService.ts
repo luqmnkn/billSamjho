@@ -1,6 +1,7 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: (process.env.GEMINI_API_key || process.env.GEMINI_API_KEY) as string });
+
+const ai = new GoogleGenAI({ apiKey: (process.env.VITE_GEMINI_API_key) as string });
 
 export const extractBillData = async (base64Image: string) => {
   const model = "gemini-3-flash-preview";

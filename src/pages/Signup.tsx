@@ -39,7 +39,7 @@ export default function Signup() {
     try {
       const res = await axios.post('/api/auth/signup', formData);
       login(res.data.token, res.data.user);
-      navigate('/dashboard');
+      navigate('/dashboard.tsx');
     } catch (err: any) {
       setError(err.response?.data?.error || 'Something went wrong. Please try again.');
     } finally {

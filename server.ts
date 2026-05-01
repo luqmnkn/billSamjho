@@ -6,9 +6,12 @@ import fs from "fs";
 import { fileURLToPath } from "url";
 import authRoutes from "./src/routes/auth.ts";
 import billRoutes from "./src/routes/billRoutes.ts";
-
+import dotenv from "dotenv"
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+
+dotenv.config();
 
 async function startServer() {
   const app = express();
@@ -21,7 +24,7 @@ async function startServer() {
   if (MONGODB_URI) {
     console.log("Attempting to connect to MongoDB...");
     mongoose.connect(MONGODB_URI, {
-      serverSelectionTimeoutMS: 2000, // Faster timeout
+      serverSelectionTimeoutMS: 8000, // Faster timeout
     })
       .then(() => console.log("Connected to MongoDB successfully"))
       .catch((err) => {
@@ -30,6 +33,7 @@ async function startServer() {
         isDemoMode = true;
       });
   } else {
+    
     console.warn("MONGODB_URI missing. Using Demo Mode.");
     isDemoMode = true;
   }
